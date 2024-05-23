@@ -1,10 +1,23 @@
 import React from 'react';
-
+import { useMatch, Route, Routes, useLocation, Outlet } from 'react-router-dom';
+import Header from '../../components/Layout/header';
+import Nav from '../../components/Layout/nav';
+import Summary from '../Summary';
+import Cast from '../Cast';
 
 const Home: React.FC = () => {
+    const match = useMatch("/");
+    const currentLocation = useLocation();
     return (
         <div>
-            <h1 className="text-3xl font-bold underline">Home</h1>
+            <Header />
+            <Nav />
+            <Routes>
+                <Route index element={<Summary />} />
+                <Route path={'/cast'} element={<Cast />} />
+            </Routes>
+
+            <Outlet />
         </div>
     )
 }
