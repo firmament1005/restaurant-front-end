@@ -9,15 +9,16 @@ const Home: React.FC = () => {
     return (
         <div>
             <Header />
+            <div className='flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900'>
+                <Nav />
 
-            <Nav />
+                <Routes>
+                    <Route index element={<Summary />} />
+                    <Route path={'/cast'} element={<Cast />} />
+                </Routes>
 
-            <Routes>
-                <Route index element={<Summary />} />
-                <Route path={'/cast'} element={<Cast />} />
-            </Routes>
-
-            <Outlet />
+                <Outlet />
+            </div>
         </div>
     )
 }
