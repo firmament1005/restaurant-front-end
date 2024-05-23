@@ -1,0 +1,20 @@
+[
+    {
+        "path": "/",
+        "component": "Home",
+        "exact": true,
+        "auth": false
+    },
+    {
+        "path": "/login",
+        "component": "Login",
+        "exact": true,
+        "auth": false
+    },
+    {
+        "path": "/summary",
+        "component": "Summary",
+        "exact": true,
+        "auth": false
+    }
+]
