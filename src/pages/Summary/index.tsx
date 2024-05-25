@@ -56,19 +56,19 @@ const getMainChartOptions = (isDarkMode: boolean) => {
         },
         series: [
             {
-                name: 'Revenue',
+                name: 'Earnings',
                 data: [6356, 6218, 6156, 6526, 6356, 6256, 6056],
                 color: '#1A56DB',
             },
             {
-                name: 'Revenue (previous period)',
+                name: 'Payment',
                 data: [6556, 6725, 6424, 6356, 6586, 6956, 6616],
                 color: '#FDBA8C',
             },
             {
-                name: 'Revenue (previous period)',
+                name: 'Personnel costs',
                 data: [6456, 6115, 5424, 6356, 7586, 6956, 3616],
-                color: '#FDBB7C',
+                color: '#ADBB7C',
             },
         ],
         markers: {
@@ -219,12 +219,21 @@ const Summary: React.FC = () => {
                 </div>
                 <div id="main-chart"></div>
             </div>
-            <div className='flex flex-row mt-5'>
-                <Table header={TableOne.header} data={TableOne.data} style='w-1/5' />
-                <Table header={TableOne.header} data={TableOne.data} style='w-1/5' />
-                <Table header={TableOne.header} data={TableOne.data} style='w-1/5' />
-                <Table header={TableOne.header} data={TableOne.data} style='w-1/5' />
+            <div className='flex flex-col'>
+                <div className='flex sm:flex-row flex-col justify-between'>
+                    <Table header={TableOne.header} data={TableOne.data} style="basis-[24%] mt-5 " />
+                    <Table header={TableOne.header} data={TableOne.data} style='basis-[24%] mt-5 ' />
+                    <Table header={TableOne.header} data={TableOne.data} style='basis-[24%] mt-5 ' />
+                    <Table header={TableOne.header} data={TableOne.data} style='basis-[24%] mt-5 ' />
+                </div>
+                <div className='flex sm:flex-row flex-col mt-5 justify-between'>
+                    <Table header={TableOne.header} data={TableOne.data} style='basis-[24%] mt-5 ' />
+                    <Table header={TableOne.header} data={TableOne.data} style='basis-[24%] mt-5 ' />
+                    <Table header={TableOne.header} data={TableOne.data} style='basis-[24%] mt-5 ' />
+                    <Table header={TableOne.header} data={TableOne.data} style='basis-[24%] mt-5 ' />
+                </div>
             </div>
+
         </div>
 
     )

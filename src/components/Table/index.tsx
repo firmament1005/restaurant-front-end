@@ -10,7 +10,7 @@ interface TableDataProps {
 const Table: React.FC<TableDataProps> = ({ header, data, style }) => {
 
     return (
-        <div className={`relative basis-1/4 overflow-x-auto border dark:border-gray-700 rounded-lg ${style}`}>
+        <div className={`relative overflow-x-auto border dark:border-gray-700 rounded-lg ${style}`}>
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
