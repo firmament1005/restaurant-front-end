@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 
 const Nav: React.FC = () => {
     const [dropdownVisibility, setDropdownVisibility] = useState({
@@ -26,23 +26,30 @@ const Nav: React.FC = () => {
                         <div className="flex-1 px-3 space-y-1 bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                             <ul className="pb-2 space-y-2">
                                 <li>
-                                    <a href="#" className="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
-                                        <svg className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
+                                    <Link to="/home" className="summary flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
+                                        <svg
+                                            className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                                            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                                        </svg>
                                         <span className="ml-3" > まとめ</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <button type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" aria-controls="dropdown-layouts" data-collapse-toggle="dropdown-layouts">
+                                    <Link to='/home/balance' className="balance flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" aria-controls="dropdown-layouts" data-collapse-toggle="dropdown-layouts">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                             className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                                             fill='currentColor'>
                                             <path d="M3 17H5V11H3V17ZM7 17H9V7H7V17ZM11 17H13V13H11V17ZM15 17H17V9H15V17ZM19 17H21V5H19V17ZM2 19H22V21H2V19Z" />
                                         </svg>
                                         <span className="flex-1 ml-3 text-left whitespace-nowrap" > 収支</span>
-                                    </button>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <button type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" aria-controls="dropdown-crud" data-collapse-toggle="dropdown-crud">
+                                    <Link to='/' className="cast flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" aria-controls="dropdown-crud" data-collapse-toggle="dropdown-crud">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             fill='currentColor'
                                             clipRule="evenodd"
@@ -51,10 +58,10 @@ const Nav: React.FC = () => {
                                             <path d="M90.396 260.923c38.16-40.465 18.438-130.599 36.706-183.524 25.655-74.227 120.495-99.594 173.333-56.158 41.432-4.412 83.182 16.956 92.184 80.835 7.36 52.248 2.867 123.098 28.979 163.408-27.902 26.737-71.407 29.008-107.856 30.963l1.118 8.425c1.82 13.68 1.801 16.655 12.249 28.273C376.651 388.21 512 338.219 512 494.87c0 3.625-2.959 6.581-6.592 6.581H6.592c-3.636 0-6.592-2.956-6.592-6.581 0-168.597 143.337-87.788 185.168-161.699 6.943-12.261 6.676-15.628 6.075-28.89l-.327-7.199c-39.105-1.85-73.255-3.68-100.52-36.159z" />
                                         </svg>
                                         <span className="flex-1 ml-3 text-left whitespace-nowrap" > キャスト</span>
-                                    </button>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
+                                    <Link to="#" className="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             fill="currentColor"
                                             viewBox="0 0 512 500.458"
@@ -62,7 +69,7 @@ const Nav: React.FC = () => {
                                             <path d="M187.095 304.534c-7.873-8.107-17.767-21.504-19.131-36.46l-1.513.029c-3.485-.047-6.854-.847-10.006-2.645-5.042-2.873-8.592-7.795-10.989-13.352-5.073-11.655-9.096-42.333 3.675-51.102l-2.391-1.59-.269-3.395c-.492-6.174-.617-13.644-.743-21.486-.46-28.843-1.045-63.782-24.233-70.789l-9.95-3.009 6.55-8.111c18.744-23.145 38.319-43.397 58.061-58.941 22.335-17.581 45.033-29.285 67.245-32.67 22.832-3.461 44.958 1.782 65.393 18.299 6.03 4.878 11.888 10.733 17.536 17.599 21.805 2.112 39.623 13.853 52.355 30.608 7.596 10.008 13.359 21.838 17.034 34.411 3.662 12.53 5.256 25.861 4.579 38.987-1.236 23.512-9.833 46.474-27.162 63.218 3.047.112 5.923.813 8.461 2.17 9.665 5.178 9.979 16.404 7.436 25.829-2.509 7.873-5.701 17.008-8.715 24.677-3.651 10.364-9.002 12.296-19.337 11.18-.337 16.435-11.73 30.04-21.566 39.16-3.704 3.434-7.954 6.495-12.617 9.188C363.564 396.773 512 324.404 512 493.877c0 3.625-2.959 6.581-6.592 6.581H6.592c-3.636 0-6.592-2.956-6.592-6.581 0-179.418 172.327-76.379 201.907-177.944-5.601-3.267-10.607-7.068-14.812-11.399z" />
                                         </svg>
                                         <span className="ml-3" > スタッフ</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <button type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" aria-controls="dropdown-pages" data-collapse-toggle="dropdown-pages">
