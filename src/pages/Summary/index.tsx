@@ -56,19 +56,19 @@ const getMainChartOptions = (isDarkMode: boolean) => {
         },
         series: [
             {
-                name: 'Revenue',
+                name: 'Earnings',
                 data: [6356, 6218, 6156, 6526, 6356, 6256, 6056],
                 color: '#1A56DB',
             },
             {
-                name: 'Revenue (previous period)',
+                name: 'Payment',
                 data: [6556, 6725, 6424, 6356, 6586, 6956, 6616],
                 color: '#FDBA8C',
             },
             {
-                name: 'Revenue (previous period)',
+                name: 'Personnel costs',
                 data: [6456, 6115, 5424, 6356, 7586, 6956, 3616],
-                color: '#FDBB7C',
+                color: '#ADBB7C',
             },
         ],
         markers: {
@@ -144,7 +144,7 @@ const getMainChartOptions = (isDarkMode: boolean) => {
 
 const TableOne = {
     header: [
-        "店舗状況[月間]"
+        "店舗状況[月間]", ""
     ],
     data: [
         ['来店人数', "253人"],
@@ -153,6 +153,86 @@ const TableOne = {
         ['組単価', '￥14,354'],
         ['女子本計', '￥2,027,799'],
         ['タグ対象額', '￥847,100']
+    ]
+}
+
+const TableTwo = {
+    header: [
+        "売上累計[月間]", ""
+    ],
+    data: [
+        [" ", '￥2,956,900'],
+        ['現金', '￥1,558,500'],
+        ['売掛', '¥0'],
+        ['カード', '￥1,398,400'],
+    ]
+}
+
+const TableThree = {
+    header: [
+        "経費累計　[月間]", ""
+    ],
+    data: [
+        ["", "￥1,058,398"],
+        ["人件費-女子", "￥868,959"],
+        ["人件費-男子", "¥0"],
+        ["諸経費", "￥189,439"]
+    ]
+}
+
+const TableFour = {
+    header: [
+        "入金累計　[月間]", ""
+    ],
+    data: [
+        ["", "¥0"]
+    ]
+}
+
+const TableFive = {
+    header: [
+        "店舗状況 2024年5月24日", ""
+    ],
+    data: [
+        ["来店人数", "0人"],
+        ["来店組数", "0組"],
+        ["客単価", "¥0"],
+        ["組単価", "¥0"],
+        ["女子本計", "¥0"],
+        ["タグ対象額", "¥0"]
+    ]
+}
+
+const TableSix = {
+    header: [
+        "売上 2024年5月24日", ""
+    ],
+    data: [
+        ["", "¥0"],
+        ["現金", "¥0"],
+        ["売掛", "¥0"],
+        ["カード", "¥0"]
+    ]
+}
+
+const TableSeven = {
+    header: [
+        "経費 2024年5月24日", ""
+    ],
+    data: [
+        ["", "¥0"],
+        ["人件費-女子", "¥0"],
+        ["人件費-男子", "¥0"],
+        ["諸経費", "¥0"]
+    ]
+}
+
+const TableEight = {
+    header: [
+        "入金 2024年5月24日", ""
+    ],
+    data: [
+        ["", "¥0"],
     ]
 }
 
@@ -219,12 +299,21 @@ const Summary: React.FC = () => {
                 </div>
                 <div id="main-chart"></div>
             </div>
-            <div className='flex flex-row mt-5'>
-                <Table header={TableOne.header} data={TableOne.data} style='w-1/5' />
-                <Table header={TableOne.header} data={TableOne.data} style='w-1/5' />
-                <Table header={TableOne.header} data={TableOne.data} style='w-1/5' />
-                <Table header={TableOne.header} data={TableOne.data} style='w-1/5' />
+            <div className='flex flex-col'>
+                <div className='flex sm:flex-row flex-col justify-between'>
+                    <Table header={TableOne.header} data={TableOne.data} style="basis-[24%] mt-5 " />
+                    <Table header={TableTwo.header} data={TableTwo.data} style='basis-[24%] mt-5 ' />
+                    <Table header={TableThree.header} data={TableThree.data} style='basis-[24%] mt-5 ' />
+                    <Table header={TableFour.header} data={TableFour.data} style='basis-[24%] mt-5 ' />
+                </div>
+                <div className='flex sm:flex-row flex-col mt-5 justify-between'>
+                    <Table header={TableFive.header} data={TableFive.data} style='basis-[24%] mt-5 ' />
+                    <Table header={TableSix.header} data={TableSix.data} style='basis-[24%] mt-5 ' />
+                    <Table header={TableSeven.header} data={TableSeven.data} style='basis-[24%] mt-5 ' />
+                    <Table header={TableEight.header} data={TableEight.data} style='basis-[24%] mt-5 ' />
+                </div>
             </div>
+
         </div>
 
     )
