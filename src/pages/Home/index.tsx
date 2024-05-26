@@ -4,6 +4,7 @@ import Header from '../../components/Layout/header';
 import Nav from '../../components/Layout/nav';
 import Summary from '../Summary';
 import Balance from '../Balance';
+import Cast from '../Cast';
 
 const Home: React.FC = () => {
     return (
@@ -15,6 +16,7 @@ const Home: React.FC = () => {
                 <Routes>
                     <Route index element={<Summary />} />
                     <Route path={'/balance'} element={<Balance />} />
+                    <Route path='/cast' element={<Cast />} />
                 </Routes>
 
                 <Outlet />

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import BalanceTable from './Table';
+import CastTable from './CastTable';
 
 
-const Balance: React.FC = () => {
 
+const Cast: React.FC = () => {
     return (
         <div className="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900 p-4">
             <div className="w-full mb-1">
@@ -12,18 +12,10 @@ const Balance: React.FC = () => {
                     <nav className="flex mb-5" aria-label="Breadcrumb">
                         <ol className="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
                             <li className="inline-flex items-center">
-                                <Link to="/home/balance" className="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white">
+                                <Link to="/home/cast" className="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white">
                                     <svg className="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                                    収支明細(月次)
+                                    売上集計(キャスト)
                                 </Link>
-                            </li>
-                            <li>
-                                <div className="flex items-center">
-                                    <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
-                                    <Link to="" className="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">
-                                        売上商品集計
-                                    </Link>
-                                </div>
                             </li>
                         </ol>
                     </nav>
@@ -61,57 +53,42 @@ const Balance: React.FC = () => {
                                     </select>
                                 </div>
                             </div>
+                            <button className='text-white dark:bg-gray-700 ml-5 px-4 rounded-lg border border-gray-300'>詳細</button>
                             <button className='text-white dark:bg-gray-700 ml-5 px-6 rounded-lg border border-gray-300'>Excel</button>
-                            <button className='text-white dark:bg-gray-700 ml-5 px-4 rounded-lg border border-gray-300'>Excel(All)</button>
+                            <button className='text-white dark:bg-gray-700 ml-5 px-4 rounded-lg border border-gray-300'>報酬明細PDF</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='flex  flex-col sm:flex-row flex-col justify-between'>
-                <div className='text-white dark:bg-gray-700 border border border-gray-300 sm:w-[24%]'>
-                    <div className='flex flex-row'>
-                        <div className='text-white font-bold text-xl pl-3 dark:bg-zinc-800 sm:w-[30%]'>
-                            売上
-                        </div>
-                        <div className='text-white font-bold text-xl text-right pr-3 dark:bg-gray-700 sm:w-[70%]'>
-                            ￥2,956,900
-                        </div>
-                    </div>
+            <CastTable />
+            <div className='text-white'>
+                <div className='flex flex-row'>
+                    <svg
+                        className='w-4 h-4 mt-1 mr-1 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white'
+                        id="Layer_1"
+                        viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill='currentColor'>
+                        <g>
+                            <path d="M423.4,358c-43.8-6.7-47.1-13.1-47.1-13.1c9-54.1-18.9-122.6-64.6-159.7c-60.7-49.3-153.1-13.5-225-88.5   c-16.8-17.5-7,196.3,83,277.3c65.8,59.2,143.3,41,164.6,31.3c19.3-8.8,32.8-24.9,32.8-24.9c35.1,10.8,52.5,10.2,52.5,10.2   C431.9,392.1,438.1,360.2,423.4,358z M343.2,361.6c-115.3-34.1-202-153.8-202-153.8s76.1,89.8,210.2,133.5   C351.6,348.1,347.6,357.8,343.2,361.6z" />
+                        </g>
+                    </svg>
+                    - は体験入店キャスト、
                 </div>
-                <div className='text-white dark:bg-gray-700 border border border-gray-300 sm:w-[24%]'>
-                    <div className='flex flex-row'>
-                        <div className='text-white font-bold text-xl pl-3 dark:bg-zinc-800 sm:w-[30%]'>
-                            入金
-                        </div>
-                        <div className='text-white font-bold text-xl text-right pr-3 dark:bg-gray-700 sm:w-[70%]'>
-                            --
-                        </div>
-                    </div>
-                </div>
-                <div className='text-white dark:bg-gray-700 border border border-gray-300 sm:w-[24%]'>
-                    <div className='flex flex-row'>
-                        <div className='text-white font-bold text-xl pl-3 dark:bg-zinc-800 sm:w-[30%]'>
-                            経費
-                        </div>
-                        <div className='text-white font-bold text-xl text-right pr-3 dark:bg-gray-700 sm:w-[70%]'>
-                            ￥1,058,398
-                        </div>
-                    </div>
-                </div>
-                <div className='text-white dark:bg-gray-700 border border border-gray-300 sm:w-[24%]'>
-                    <div className='flex flex-row'>
-                        <div className='text-white font-bold text-xl pl-3 dark:bg-zinc-800 sm:w-[30%]'>
-                            粗利
-                        </div>
-                        <div className='text-white font-bold text-xl text-right pr-3 dark:bg-gray-700 sm:w-[70%]'>
-                            ￥1,898,502
-                        </div>
-                    </div>
+                <div className='flex flex-row'>
+                    <svg
+                        viewBox="0 0 448 512"
+                        className='w-4 h-4 mt-1 mr-1 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white'
+                        fill='currentColor'
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z" />
+                    </svg>
+                    - は派遣キャストとして登録されています。
                 </div>
             </div>
-            <BalanceTable />
-        </div >
+        </div>
     )
 }
 
-export default Balance;
+
+export default Cast;
