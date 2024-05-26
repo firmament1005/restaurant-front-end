@@ -1,16 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Table from '../../components/Table';
 
-
-const CastData = {
-    header: [
-        "No", "名前", "ポイント", "残り支給額", "オタク本計", "本計", "給率(%)", "勤務日数", "時間報酬", "オタクバック", "押すな！バック", "ドリンクバック", "ボトルバック", "フードバック", "ボーナス", "厚生費", "日払", "マイナス"
-    ],
-    data: [
-
-    ]
-}
 const CastTable: React.FC = () => {
     return (
         <div className='mt-10'>
