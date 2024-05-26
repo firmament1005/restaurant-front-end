@@ -16,7 +16,7 @@ const Table: React.FC<TableDataProps> = ({ header, data, style = '' }) => {
                         {header.map((heading, index) => (
                             <th
                                 key={index}
-                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400"
+                                className="w-auto px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400"
                             >
                                 {heading}
                             </th>
