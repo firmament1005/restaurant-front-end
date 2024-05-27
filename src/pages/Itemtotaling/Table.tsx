@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getMaxDate, daysOfWeek } from '../../utils/Date';
 
-const Table: React.FC = () => {
+interface TableProps {
+    Year: number,
+    Month: number
+}
+
+const Table: React.FC<TableProps> = ({ Year, Month }) => {
+
+    const [maxDate, setMaxDate] = useState(0);
+    const [firstDayofWeek, setFirstDayofWeek] = useState(new Date(Year, Month - 1, 0).getDay());
+
+    useEffect(() => {
+        const currentDate = new Date();
+        setFirstDayofWeek(new Date(Year, Month - 1, 0).getDay());
+        setMaxDate(getMaxDate({ Year: Year == 0 ? currentDate.getFullYear() : Year, Month: Month == 0 ? currentDate.getMonth() + 1 : Month }));
+    }, [Year, Month])
+
     return (
         <div className='mt-10'>
             <div className='overflow-auto rounded-lg p-1 border dark:border-gray-700'>
@@ -17,280 +33,50 @@ const Table: React.FC = () => {
                             <th rowSpan={2} className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
                                 合計
                             </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                火
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                水
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                木
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                金
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                土
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                日
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                月
-                            </th>
-
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                火
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                水
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                木
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                金
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                土
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                日
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                月
-                            </th>
-
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                火
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                水
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                木
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                金
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                土
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                日
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                月
-                            </th>
-
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                火
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                水
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                木
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                金
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                土
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                日
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                月
-                            </th>
+                            {maxDate !== 0 ? (
+                                Array.from({ length: maxDate }, (_, index) => (
+                                    <th
+                                        className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400"
+                                    >
+                                        {daysOfWeek[(index + firstDayofWeek + 1) % 7]}
+                                    </th>
+                                ))
+                            ) : (
+                                <p></p>
+                            )}
                         </tr>
-                        <tr className='border-b border-blue-950'>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                1
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                2
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                3
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                4
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                5
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                6
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                7
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                1
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                2
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                3
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                4
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                5
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                6
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                7
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                1
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                2
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                3
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                4
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                5
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                6
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                7
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                1
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                2
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                3
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                4
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                5
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                6
-                            </th>
-                            <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                7
-                            </th>
-                        </tr>
+                        {maxDate !== 0 ? (
+                            <tr className='border-b border-blue-950'>
+                                {Array.from({ length: maxDate }, (_, index) => (
+                                    <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
+                                        {index + 1}
+                                    </th>
+                                ))}
+                            </tr>
+                        ) : (
+                            <p>Loading...</p>
+                        )}
                     </thead>
                     <tbody>
                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td className="px-6 py-4 border-r border-gray-400 font-medium whitespace-nowrap dark:text-gray-400">
-                                <Link to={"/home/cast"}>ろぜ</Link>
+                                1
                             </td>
                             <td className="px-6 py-4 border-r border-gray-400 font-medium whitespace-nowrap dark:text-green-500">
-                                H
+                                散歩
                             </td>
                             <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
+                                27
                             </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium whitespace-nowrap dark:text-green-500">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
-                            <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                H
-                            </td>
+                            {maxDate !== 0 ? (
+                                Array.from({ length: maxDate }, (_, index) => (
+                                    <th className="px-1 text-center font-bold text-sm p-2 border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
+                                        0
+                                    </th>
+                                ))
+                            ) : (
+                                <p>Loading...</p>
+                            )}
                         </tr>
                     </tbody>
                 </table>

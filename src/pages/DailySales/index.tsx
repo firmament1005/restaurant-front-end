@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { getMaxDate } from '../../utils/Date';
-import Table from './Table';
+import { Link } from 'react-router-dom';
 
 
-const ItemTotaling: React.FC = () => {
-
+const DailySales: React.FC = () => {
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+    const [selectedDay, setSelectedDay] = useState(new Date().getDate());
     const [maxDate, setMaxDate] = useState(0);
 
     useEffect(() => {
+        console.log(selectedDay);
         const currentDate = new Date();
-        setMaxDate(getMaxDate({ Year: selectedYear == 0 ? currentDate.getFullYear() : selectedYear, Month: selectedMonth == 0 ? currentDate.getMonth() : selectedMonth }));
+        setMaxDate(getMaxDate({ Year: selectedYear === 0 ? currentDate.getFullYear() : selectedYear, Month: selectedMonth === 0 ? currentDate.getMonth() : selectedMonth }));
     }, [selectedYear, selectedMonth])
 
     const handleSelectedYear = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -23,6 +23,10 @@ const ItemTotaling: React.FC = () => {
         setSelectedMonth(parseInt(e.target.value));
     }
 
+    const handleSelectedDay = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedDay(parseInt(e.target.value));
+    }
+
     return (
         <div className="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900 p-4">
             <div className="w-full mb-1">
@@ -30,9 +34,9 @@ const ItemTotaling: React.FC = () => {
                     <nav className="flex mb-5" aria-label="Breadcrumb">
                         <ol className="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
                             <li className="inline-flex items-center">
-                                <Link to="/home/balance" className="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-sky-500 dark:hover:text-white">
+                                <Link to="/home/dailysales" className="inline-flex items-center text-white hover:text-primary-600 dark:hover:text-white">
                                     <svg className="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                                    収支明細(月次)
+                                    収支明細(日次)
                                 </Link>
                             </li>
                             <li>
@@ -40,14 +44,6 @@ const ItemTotaling: React.FC = () => {
                                     <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
                                     <Link to="/home/salesitem" className="ml-1 text-gray-700 dark:text-sky-500 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">
                                         売上商品集計
-                                    </Link>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="flex items-center">
-                                    <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
-                                    <Link to="" className="ml-1 text-white hover:text-primary-600 md:ml-2  dark:hover:text-white">
-                                        商品別ー集計
                                     </Link>
                                 </div>
                             </li>
@@ -83,10 +79,17 @@ const ItemTotaling: React.FC = () => {
                                             ))
                                         }
                                     </select>
-                                    <select className="focus:outline-none border-0 text-sm w-auto p-2.5 dark:bg-gray-700 dark:text-white">
-                                        <option className='text-center' value="store_1">1月~15月</option>
-                                        <option className='text-center' value="store_2">15月~{maxDate}月</option>
-                                        <option className='text-center' value="store_3">All</option>
+                                    <select
+                                        className="focus:outline-none border-0 text-sm w-auto p-2.5 dark:bg-gray-700 dark:text-white"
+                                        value={selectedDay}
+                                        onChange={handleSelectedDay}>
+                                        {maxDate !== 0 ? (
+                                            Array.from({ length: maxDate }, (_, index) => (
+                                                <option className='text-center' value={index + 1}>{index + 1 < 9 ? "0" + (index + 1) : index + 1}</option>
+                                            ))
+                                        ) : (
+                                            <p>Loading...</p>
+                                        )}
                                     </select>
                                 </div>
                             </div>
@@ -95,10 +98,9 @@ const ItemTotaling: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <Table Year={selectedYear} Month={selectedMonth} />
         </div>
     )
 }
 
 
-export default ItemTotaling;
+export default DailySales;
