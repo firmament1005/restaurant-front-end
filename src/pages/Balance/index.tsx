@@ -68,18 +68,11 @@ const Balance: React.FC = () => {
                                         className="bg-gray-50 focus:outline-none border-0 text-gray-900 text-sm block w-full w-auto pl-3 p-2.5 dark:bg-gray-700 dark:text-white"
                                         onChange={handleChangeMonth}
                                         value={selectedMonth}>
-                                        <option className='text-center' value="1">1 月</option>
-                                        <option className='text-center' value="2">2 月</option>
-                                        <option className='text-center' value="3">3 月</option>
-                                        <option className='text-center' value="4">4 月</option>
-                                        <option className='text-center' value="5">5 月</option>
-                                        <option className='text-center' value="6">6 月</option>
-                                        <option className='text-center' value="7">7 月</option>
-                                        <option className='text-center' value="8">8 月</option>
-                                        <option className='text-center' value="9">9 月</option>
-                                        <option className='text-center' value="10">10 月</option>
-                                        <option className='text-center' value="11">11 月</option>
-                                        <option className='text-center' value="12">12 月</option>
+                                        {
+                                            Array.from({ length: 12 }, (_, index) => (
+                                                <option className='text-center' value={index + 1}>{index + 1} 月</option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
                             </div>

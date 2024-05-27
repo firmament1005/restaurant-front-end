@@ -38,18 +38,11 @@ const Cast: React.FC = () => {
                                         <option className='text-center' value="store_1">2026 年 </option>
                                     </select>
                                     <select className="bg-gray-50 focus:outline-none border-0 text-gray-900 text-sm block w-full pl-3 p-2.5 dark:bg-gray-700 dark:text-white">
-                                        <option className='text-center' value="store_1">1 月</option>
-                                        <option className='text-center' value="store_2">2 月</option>
-                                        <option className='text-center' value="store_3">3 月</option>
-                                        <option className='text-center' value="store_3">4 月</option>
-                                        <option className='text-center' value="store_3">5 月</option>
-                                        <option className='text-center' value="store_3">6 月</option>
-                                        <option className='text-center' value="store_3">7 月</option>
-                                        <option className='text-center' value="store_3">8 月</option>
-                                        <option className='text-center' value="store_3">9 月</option>
-                                        <option className='text-center' value="store_3">10 月</option>
-                                        <option className='text-center' value="store_3">11 月</option>
-                                        <option className='text-center' value="store_3">12 月</option>
+                                        {
+                                            Array.from({ length: 12 }, (_, index) => (
+                                                <option className='text-center' value={index + 1}>{index + 1} 月</option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
                             </div>
