@@ -6,6 +6,7 @@ import Summary from '../Summary';
 import Balance from '../Balance';
 import Cast from '../Cast';
 import SalesItem from '../SalesItem';
+import ItemTotaling from '../Itemtotaling';
 
 const Home: React.FC = () => {
     return (
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
                     <Route path={'/balance'} element={<Balance />} />
                     <Route path='/cast' element={<Cast />} />
                     <Route path='/salesitem' element={<SalesItem />} />
+                    <Route path='/item_totaling' element={<ItemTotaling />} />
                 </Routes>
                 <Outlet />
             </div>
