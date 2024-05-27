@@ -92,9 +92,8 @@ const SalesItem: React.FC = () => {
                     </div>
                 </div>
             </div>
-
-            <SalesCastTable />
             <SalesDateTable />
+            <SalesCastTable />
         </div>
     )
 }

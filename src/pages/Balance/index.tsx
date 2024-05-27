@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BalanceTable from './Table';
 
 
 const Balance: React.FC = () => {
+    const currentDate = new Date();
+    const [selectedMonth, setSelectedMonth] = useState(0);
+    const [selectedYear, setSelectedYear] = useState(0);
+
+    useEffect(() => {
+        setSelectedMonth(currentDate.getMonth() + 1);
+        setSelectedYear(currentDate.getFullYear());
+    }, [])
+
+    const handleChangeMonth = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedMonth(parseInt(e.target.value));
+    };
+
+    const handleChangeYear = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedYear(parseInt(e.target.value));
+    };
 
     return (
         <div className="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900 p-4">
@@ -36,28 +52,34 @@ const Balance: React.FC = () => {
                                     <path clipRule="evenodd" fillRule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z"></path>
                                 </svg>
                                 <div className='flex flex-row'>
-                                    <select className="bg-gray-50 focus:outline-none border-0 text-gray-900 text-sm block w-full w-auto dark:bg-gray-700 dark:text-white">
-                                        <option className='text-center' value="store_1">2020 年 </option>
-                                        <option className='text-center' value="store_1">2021 年 </option>
-                                        <option className='text-center' value="store_1">2022 年 </option>
-                                        <option className='text-center' value="store_1">2023 年 </option>
-                                        <option className='text-center' value="store_1">2024 年 </option>
-                                        <option className='text-center' value="store_1">2025 年 </option>
-                                        <option className='text-center' value="store_1">2026 年 </option>
+                                    <select
+                                        className="bg-gray-50 focus:outline-none border-0 text-gray-900 text-sm block w-full w-auto dark:bg-gray-700 dark:text-white"
+                                        onChange={handleChangeYear}
+                                        value={selectedYear}>
+                                        <option className='text-center' value="2020">2020 年 </option>
+                                        <option className='text-center' value="2021">2021 年 </option>
+                                        <option className='text-center' value="2022">2022 年 </option>
+                                        <option className='text-center' value="2023">2023 年 </option>
+                                        <option className='text-center' value="2024">2024 年 </option>
+                                        <option className='text-center' value="2025">2025 年 </option>
+                                        <option className='text-center' value="2026">2026 年 </option>
                                     </select>
-                                    <select className="bg-gray-50 focus:outline-none border-0 text-gray-900 text-sm block w-full w-auto pl-3 p-2.5 dark:bg-gray-700 dark:text-white">
-                                        <option className='text-center' value="store_1">1 月</option>
-                                        <option className='text-center' value="store_2">2 月</option>
-                                        <option className='text-center' value="store_3">3 月</option>
-                                        <option className='text-center' value="store_3">4 月</option>
-                                        <option className='text-center' value="store_3">5 月</option>
-                                        <option className='text-center' value="store_3">6 月</option>
-                                        <option className='text-center' value="store_3">7 月</option>
-                                        <option className='text-center' value="store_3">8 月</option>
-                                        <option className='text-center' value="store_3">9 月</option>
-                                        <option className='text-center' value="store_3">10 月</option>
-                                        <option className='text-center' value="store_3">11 月</option>
-                                        <option className='text-center' value="store_3">12 月</option>
+                                    <select
+                                        className="bg-gray-50 focus:outline-none border-0 text-gray-900 text-sm block w-full w-auto pl-3 p-2.5 dark:bg-gray-700 dark:text-white"
+                                        onChange={handleChangeMonth}
+                                        value={selectedMonth}>
+                                        <option className='text-center' value="1">1 月</option>
+                                        <option className='text-center' value="2">2 月</option>
+                                        <option className='text-center' value="3">3 月</option>
+                                        <option className='text-center' value="4">4 月</option>
+                                        <option className='text-center' value="5">5 月</option>
+                                        <option className='text-center' value="6">6 月</option>
+                                        <option className='text-center' value="7">7 月</option>
+                                        <option className='text-center' value="8">8 月</option>
+                                        <option className='text-center' value="9">9 月</option>
+                                        <option className='text-center' value="10">10 月</option>
+                                        <option className='text-center' value="11">11 月</option>
+                                        <option className='text-center' value="12">12 月</option>
                                     </select>
                                 </div>
                             </div>
@@ -109,7 +131,7 @@ const Balance: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <BalanceTable />
+            <BalanceTable Year={selectedYear == 0 ? currentDate.getFullYear() : selectedYear} Month={selectedMonth == 0 ? currentDate.getMonth() + 1 : selectedMonth} />
         </div >
     )
 }

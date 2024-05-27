@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getMaxDate } from '../../utils/Date';
 
+interface SelectedDate {
+    Year: number,
+    Month: number
+}
 
-const getLastDateOfCurrentMonth = () => {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const lastDate = new Date(year, month + 1, 0);
-    return lastDate.getDate();
-};
+const BalanceTable: React.FC<SelectedDate> = ({ Year, Month }) => {
 
-
-const BalanceTable: React.FC = () => {
-
-    const [daysCount, setMaxDate] = useState<number | null>(null);;
+    const [daysCount, setMaxDate] = useState(0);
 
     useEffect(() => {
-        const lastDate = getLastDateOfCurrentMonth();
-        setMaxDate(lastDate);
-    }, [])
+        const date = new Date();
+        setMaxDate(getMaxDate({ Year: Year != 0 ? Year : date.getFullYear(), Month: Month != 0 ? Month : date.getMonth() + 1 }));
+    }, [Year, Month]);
 
     return (
         <div className='mt-10'>
@@ -145,12 +141,12 @@ const BalanceTable: React.FC = () => {
                         </tr>
                     </thead>
 
-                    {daysCount !== null ? (
+                    {daysCount !== 0 ? (
                         <tbody>
                             {Array.from({ length: daysCount }, (_, index) => (
                                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td className="px-6 py-4 border-r border-gray-400 font-medium whitespace-nowrap dark:text-gray-400">
-                                        {index < 10 ? <Link to='#'>04/0{index}</Link> : <Link to='#'>04/{index}</Link>}
+                                        {index < 9 ? <Link to='#'>04/0{index + 1}</Link> : <Link to='#'>04/{index + 1}</Link>}
                                     </td>
                                     <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         H
