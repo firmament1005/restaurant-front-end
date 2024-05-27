@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { getMaxDate } from '../../utils/Date';
 import { Link } from 'react-router-dom';
-
+import SalesReportTable from './SalesReportTable';
+import CastManagementTable from './CastManagementTable';
+import WithdrawalTable from './WithdrawalTable';
+import DepositTable from './DepositTable';
 
 const DailySales: React.FC = () => {
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
@@ -42,8 +45,8 @@ const DailySales: React.FC = () => {
                             <li>
                                 <div className="flex items-center">
                                     <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
-                                    <Link to="/home/salesitem" className="ml-1 text-gray-700 dark:text-sky-500 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">
-                                        売上商品集計
+                                    <Link to="#" className="ml-1 text-gray-700 dark:text-sky-500 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">
+                                        収支明細(月次)
                                     </Link>
                                 </div>
                             </li>
@@ -97,6 +100,14 @@ const DailySales: React.FC = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='flex justify-between sm:flex-row flex-col'>
+                <SalesReportTable />
+                <CastManagementTable />
+            </div>
+            <div className='flex justify-between sm:flex-row flex-col'>
+                <WithdrawalTable />
+                <DepositTable />
             </div>
         </div>
     )
