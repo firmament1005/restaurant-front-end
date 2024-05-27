@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 const SalesDateTable: React.FC = () => {
     return (
-        <div className='mt-10'>
-            <div className='overflow-auto rounded-lg p-1 border dark:border-gray-700'>
-                <table className="w-full w-auto text-sm text-gray-500 dark:text-gray-400 border dark:border-gray-700 overflow-auto-x overflow-x-scroll w-[2500px]">
+        <div className='mt-10 w-full'>
+            <div className='overflow-auto rounded-lg p-1 border dark:border-gray-700 w-full'>
+                <table className="w-[3000px] text-sm text-gray-500 dark:text-gray-400 border dark:border-gray-700 overflow-auto-x overflow-x-scroll w-[2500px]">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr className='border-b border-blue-950'>
                             <th className="px-1 text-center border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >

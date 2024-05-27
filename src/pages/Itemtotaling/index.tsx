@@ -1,26 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import SalesCastTable from './SalesCastTable';
-import SalesDateTable from './SalesDateTable';
+import { getMaxDate } from '../../utils/Date';
+import Table from './Table';
 
-const getLastDateOfCurrentMonth = () => {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const lastDate = new Date(year, month + 1, 0);
-    return lastDate.getDate();
-};
 
-const SalesItem: React.FC = () => {
-    const [maxDate, setMaxDate] = useState<number | null>(null);;
+const ItemTotaling: React.FC = () => {
+
+    const [selectedMonth, setSelectedMonth] = useState(0);
+    const [selectedYear, setSelectedYear] = useState(0);
+    const [maxDate, setMaxDate] = useState(0);
 
     useEffect(() => {
-        const lastDate = getLastDateOfCurrentMonth();
-        setMaxDate(lastDate);
+        setMaxDate(getMaxDate({ Year: selectedYear, Month: selectedMonth }));
     }, [])
+
     return (
         <div className="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900 p-4">
-            <div className="w-full mb-1 ">
+            <div className="w-full mb-1">
                 <div className="mb-4">
                     <nav className="flex mb-5" aria-label="Breadcrumb">
                         <ol className="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
@@ -33,7 +29,7 @@ const SalesItem: React.FC = () => {
                             <li>
                                 <div className="flex items-center">
                                     <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
-                                    <Link to="" className="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">
+                                    <Link to="/home/salesitem" className="ml-1 text-gray-700 dark:text-sky-500 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">
                                         売上商品集計
                                     </Link>
                                 </div>
@@ -41,7 +37,7 @@ const SalesItem: React.FC = () => {
                             <li>
                                 <div className="flex items-center">
                                     <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
-                                    <Link to="/home/item_totaling" className="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-sky-500 dark:hover:text-white">
+                                    <Link to="" className="ml-1 text-white hover:text-primary-600 md:ml-2  dark:hover:text-white">
                                         商品別ー集計
                                     </Link>
                                 </div>
@@ -79,7 +75,7 @@ const SalesItem: React.FC = () => {
                                         <option className='text-center' value="store_3">11 月</option>
                                         <option className='text-center' value="store_3">12 月</option>
                                     </select>
-                                    <select className="focus:outline-none border-0 text-sm w-full w-auto p-2.5 dark:bg-gray-700 dark:text-white">
+                                    <select className="focus:outline-none border-0 text-sm w-auto p-2.5 dark:bg-gray-700 dark:text-white">
                                         <option className='text-center' value="store_1">1月~15月</option>
                                         <option className='text-center' value="store_2">15月~{maxDate}月</option>
                                         <option className='text-center' value="store_3">All</option>
@@ -91,11 +87,10 @@ const SalesItem: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <SalesDateTable />
-            <SalesCastTable />
+            <Table />
         </div>
     )
 }
 
 
-export default SalesItem;
+export default ItemTotaling;
