@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { getMaxDate } from '../../utils/Date';
 import { Link } from 'react-router-dom';
 import SalesReportTable from './SalesReportTable';
-import CastManagementTable from './CastManagementTable';
+import CashManagementTable from './CashManagementTable';
 import WithdrawalTable from './WithdrawalTable';
 import DepositTable from './DepositTable';
+import SlipsTable from './SlipsTable';
+import CastReportTable from './CastReportTable';
+import StaffReportTable from './StaffReportTable';
 
 const DailySales: React.FC = () => {
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
@@ -45,7 +48,7 @@ const DailySales: React.FC = () => {
                             <li>
                                 <div className="flex items-center">
                                     <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
-                                    <Link to="#" className="ml-1 text-gray-700 dark:text-sky-500 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">
+                                    <Link to="/home/balance" className="ml-1 text-gray-700 dark:text-sky-500 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">
                                         収支明細(月次)
                                     </Link>
                                 </div>
@@ -103,12 +106,42 @@ const DailySales: React.FC = () => {
             </div>
             <div className='flex justify-between sm:flex-row flex-col'>
                 <SalesReportTable />
-                <CastManagementTable />
+                <CashManagementTable />
             </div>
             <div className='flex justify-between sm:flex-row flex-col'>
                 <WithdrawalTable />
                 <DepositTable />
             </div>
+
+            <SlipsTable />
+
+            <div className='text-white flex flex-col mt-5'>
+                <div className='flex flex-row'>
+                    <svg
+                        className='w-4 h-4 mt-1 mr-1 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white'
+                        id="Layer_1"
+                        viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill='currentColor'>
+                        <g>
+                            <path d="M423.4,358c-43.8-6.7-47.1-13.1-47.1-13.1c9-54.1-18.9-122.6-64.6-159.7c-60.7-49.3-153.1-13.5-225-88.5   c-16.8-17.5-7,196.3,83,277.3c65.8,59.2,143.3,41,164.6,31.3c19.3-8.8,32.8-24.9,32.8-24.9c35.1,10.8,52.5,10.2,52.5,10.2   C431.9,392.1,438.1,360.2,423.4,358z M343.2,361.6c-115.3-34.1-202-153.8-202-153.8s76.1,89.8,210.2,133.5   C351.6,348.1,347.6,357.8,343.2,361.6z" />
+                        </g>
+                    </svg>
+                    - は体験入店キャスト、
+                </div>
+                <div className='flex flex-row'>
+                    <svg
+                        viewBox="0 0 448 512"
+                        className='w-4 h-4 mt-1 mr-1 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white'
+                        fill='currentColor'
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z" />
+                    </svg>
+                    - は派遣キャストとして登録されています。
+                </div>
+            </div>
+            <CastReportTable />
+            <StaffReportTable />
         </div>
     )
 }

@@ -1,15 +1,15 @@
 import React from 'react';
 
 
-const CastManagementTable: React.FC = () => {
+const StaffReportTable: React.FC = () => {
     return (
-        <div className='mt-10 sm:w-[49%] w-100'>
+        <div>
             <div className='overflow-auto w-full rounded-lg p-1 border dark:border-gray-700'>
                 <table className="text-sm w-full text-gray-500 dark:text-gray-400 border dark:border-gray-700 overflow-auto-x overflow-x-scroll">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr className='border-b border-blue-950'>
                             <th colSpan={4} className="px-1 text-left text-lg font-bold border-r-2 border-b border-blue-950 text-gray-500 uppercase tracking-wider dark:text-gray-400" >
-                                現金管理 - 2024年5月26日(日)
+                                スタッフ
                             </th>
                         </tr>
                     </thead>
@@ -35,5 +35,4 @@ const CastManagementTable: React.FC = () => {
     )
 }
 
-
-export default CastManagementTable;
+export default StaffReportTable;
