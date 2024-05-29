@@ -70,7 +70,7 @@ const CastTable: React.FC = () => {
                                 1
                             </td>
                             <td className="px-6 py-4 border-r border-gray-400 font-medium whitespace-nowrap dark:text-green-500">
-                                <Link to={"/home/cast"}>ろぜ</Link>
+                                <Link to={"/home/castdetail"}>ろぜ</Link>
                             </td>
                             <td className="px-6 py-4 border-r border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 H
